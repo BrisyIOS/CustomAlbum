@@ -16,7 +16,7 @@
 </br></br>
 ##获取相册列表
 ###定义一个相册模型 AlbumModel
-<inline>
+` 
 import UIKit
 import Photos
 
@@ -33,7 +33,8 @@ self.fetchResult = fetchResult
 }
 
 }
-</inline>
+
+`
 
 </br></br>
 ###创建一个类AlbumController  用来展示相册列表
