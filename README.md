@@ -16,7 +16,7 @@
 </br></br>
 ##获取相册列表
 ###定义一个相册模型 AlbumModel
-
+<code>
 import UIKit
 import Photos
 
@@ -33,9 +33,11 @@ self.fetchResult = fetchResult
 }
 
 }
+</code>
 
 </br></br>
 ###创建一个类AlbumController  用来展示相册列表
+<code>
 import UIKit
 import Photos
 
@@ -200,10 +202,12 @@ tableView.frame = view.bounds;
 
 
 }
+</code>
 
 
 ###创建 AlbumCell 
 
+<code>
 import UIKit
 
 class AlbumCell: UITableViewCell {
@@ -279,11 +283,14 @@ fatalError("init(coder:) has not been implemented")
 
 }
 
+</code>
+
 </br></br>
 
 
 ##获取照片列表
 ###创建PhotoListController
+<code>
 import UIKit
 import Photos
 
@@ -476,7 +483,11 @@ super.didReceiveMemoryWarning()
 }
 }
 
+</code>
+
 ###创建PhotoCell
+
+<code>
 
 import UIKit
 import Photos
@@ -522,11 +533,14 @@ fatalError("init(coder:) has not been implemented")
 
 }
 
+</code>
+
 
 </br></br>
 
 ##照片详情
 ###创建PhotoDetailController
+<code>
 import UIKit
 import Photos
 
@@ -616,9 +630,13 @@ super.didReceiveMemoryWarning()
 
 }
 
+</code>
+
 </br></br>
 
 ###创建PhotoDetailCell
+
+<code>
 import UIKit
 import Photos
 
@@ -698,10 +716,14 @@ fatalError("init(coder:) has not been implemented")
 
 }
 
+</code>
+
 </br></br>
 
 ##点开照片详情的Push 动画
 ###创建PushAnimation
+
+<code>
 import UIKit
 
 class PushAnimation: NSObject,UIViewControllerAnimatedTransitioning {
@@ -761,7 +783,7 @@ _ in
 }
 
 }
-
+</code>
 
 
 ##关于作者
