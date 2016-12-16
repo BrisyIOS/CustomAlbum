@@ -8,6 +8,9 @@
 * Swift 3.0+ 
 </br></br>
 
+##运行效果
+![image text](http://ac-otjqboap.clouddn.com/a8c39c7ffddbac41f9df.gif)
+
 ##自定义系统相册
 * 判断权限
 * 获取相册列表

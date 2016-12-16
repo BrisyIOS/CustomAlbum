@@ -85,7 +85,7 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     // 加载assets数组
-    func loadPhotoList() -> Void {
+    private func loadPhotoList() -> Void {
         
         if assets == nil {
             assets = [PHAsset]();
@@ -108,7 +108,7 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     // 加载图片数组
-    func loadImageArray() -> Void {
+    private func loadImageArray() -> Void {
         
         let newOptions = PHImageRequestOptions();
         newOptions.isSynchronous = true;
