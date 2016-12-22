@@ -60,14 +60,14 @@ class AlbumCell: UITableViewCell {
         let width = bounds.size.width;
         
         // 设置相册图片
-        let iconX: CGFloat = 10;
-        let iconY: CGFloat = 10;
-        let iconW: CGFloat = 60;
+        let iconX: CGFloat = realValue(value: 10);
+        let iconY: CGFloat = realValue(value: 10);
+        let iconW: CGFloat = realValue(value: 60);
         let iconH: CGFloat = iconW;
         icon.frame = CGRect(x: iconX, y: iconY, width: iconW, height: iconH);
         
         // 设置相册名称的frame
-        let nameLabelX: CGFloat = icon.frame.maxX + 20;
+        let nameLabelX: CGFloat = icon.frame.maxX + realValue(value: 20);
         let nameLabelY: CGFloat = icon.frame.minY;
         let nameLabelW: CGFloat = width - nameLabelX * 2;
         let nameLabelH: CGFloat = iconH;

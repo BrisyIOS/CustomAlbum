@@ -14,13 +14,13 @@ class PhotoDetailController: UIViewController, UICollectionViewDataSource, UICol
     // cell标识
     private let photoDetailCellIdentifier = "photoDetailCellIdentifier";
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout();
         layout.scrollDirection = .horizontal;
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
-        layout.itemSize = CGSize(width: SCREEN_WIDRH, height: SCREEN_HEIGHT - CGFloat(64));
-        let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDRH, height: SCREEN_HEIGHT - CGFloat(64)), collectionViewLayout: layout);
+        layout.itemSize = CGSize(width: SCREEN_WIDRH, height: SCREEN_HEIGHT);
+        let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDRH, height: SCREEN_HEIGHT), collectionViewLayout: layout);
         collectionView.dataSource = self;
         collectionView.delegate = self;
         collectionView.backgroundColor = UIColor.clear;
@@ -85,6 +85,11 @@ class PhotoDetailController: UIViewController, UICollectionViewDataSource, UICol
             }
         }
         return cell!;
+    }
+    
+    // 选中cell消失
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        dismiss(animated: true, completion: nil);
     }
 
 

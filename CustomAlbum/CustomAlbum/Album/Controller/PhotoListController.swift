@@ -9,21 +9,20 @@
 import UIKit
 import Photos
 
-let SCREEN_WIDRH = UIScreen.main.bounds.size.width;
-let SCREEN_HEIGHT = UIScreen.main.bounds.size.height;
-let ITEM_SIZE = CGSize(width: 100, height: 100);
-let MARGIN: CGFloat = 2;
+let ITEM_SIZE = CGSize(width: realValue(value: 90), height: realValue(value: 100));
+let IMAGE_SIZE = CGSize(width: realValue(value: 90 * 2) * scale, height: realValue(value: 90 * 2) * scale);
+let MARGIN: CGFloat = realValue(value: 3);
 
-class PhotoListController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
+class PhotoListController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let photoCellIdentifier = "photoCellIdentifier";
     
     // collectionView
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout();
         layout.itemSize = ITEM_SIZE;
-        layout.minimumLineSpacing = 2;
-        layout.minimumInteritemSpacing = 2;
+        layout.minimumLineSpacing = realValue(value: MARGIN);
+        layout.minimumInteritemSpacing = realValue(value: MARGIN);
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDRH, height: SCREEN_HEIGHT - CGFloat(64)), collectionViewLayout: layout);
         collectionView.backgroundColor = UIColor.clear;
         collectionView.dataSource = self;
@@ -44,7 +43,7 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        print("-------\(IMAGE_SIZE)")
         // 添加collectionView
         view.addSubview(collectionView);
         
@@ -54,34 +53,22 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
     
         // 加载assets数组
         loadPhotoList();
-        
-        // 异步加载缩略图
-        let options = PHImageRequestOptions();
-        options.isSynchronous = false;
-        options.resizeMode = .fast;
-        options.isNetworkAccessAllowed = true;
-        
-        
-        let _ = self.assets!.map({
-            (asset) in
-            
-            self.imageManager.requestImage(for: asset, targetSize: ITEM_SIZE, contentMode: .aspectFill, options: options, resultHandler: {
-                (image, _) in
-                if let image = image {
-                    self.imageArray.append(image);
-                }
-                
-            });
-            
-        });
-        
-        
-        
-        // 加载图片数组
-        loadImageArray();
-        
+      
+        // 缓存图片
+        cachePhotos();
+ 
 
         // Do any additional setup after loading the view.
+    }
+    
+    // 缓存照片
+    func cachePhotos() -> Void {
+        
+        let newOptions = PHImageRequestOptions();
+        newOptions.isSynchronous = false;
+        newOptions.resizeMode = .exact;
+        newOptions.isNetworkAccessAllowed = true;
+        self.imageManager.startCachingImages(for: assets!, targetSize: IMAGE_SIZE, contentMode: .aspectFit, options: newOptions);
     }
     
     // 加载assets数组
@@ -106,42 +93,7 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         }
         
     }
-    
-    // 加载图片数组
-    private func loadImageArray() -> Void {
-        
-        let newOptions = PHImageRequestOptions();
-        newOptions.isSynchronous = true;
-        newOptions.resizeMode = .exact;
-        newOptions.isNetworkAccessAllowed = true;
-        
-        DispatchQueue.global().async {
-            _ in
-   
-            // 同步加载高清图片
-            DispatchQueue.main.async {
-                _ in
-                
-                //  清空数组
-                self.imageArray.removeAll();
-                
-                let _ = self.assets!.map({
-                    (asset) in
-                    
-                    self.imageManager.requestImage(for: asset, targetSize: ITEM_SIZE, contentMode: .aspectFill, options: newOptions, resultHandler: {
-                        (image, _) in
-                        
-                        if let image = image {
-                            self.imageArray.append(image);
-                        }
-                    })
-                });
-                
-                // 刷新数据
-                self.collectionView.reloadData();
-            }
-        }
-    }
+ 
     
     // 返回行数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -156,7 +108,15 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         if let assets = assets {
             
             if indexPath.row < assets.count {
-                cell?.image = imageArray[indexPath.row];
+                let options = PHImageRequestOptions();
+                options.isSynchronous = true;
+                options.resizeMode = .fast;
+                options.isNetworkAccessAllowed = true;
+                let asset = assets[indexPath.row];
+                self.imageManager.requestImage(for: asset, targetSize: IMAGE_SIZE, contentMode: .aspectFit, options: options, resultHandler: {
+                    (image, _) in
+                    cell?.image = image;
+                })
             }
         }
         return cell!;
@@ -167,31 +127,20 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.deselectItem(at: indexPath, animated: false);
         
         let photoDetailVc = PhotoDetailController();
-        navigationController?.delegate = self;
    
         if let assets = assets {
             if indexPath.row < assets.count {
                 
                 photoDetailVc.assets = assets;
                 photoDetailVc.indexPath = indexPath;
-                navigationController?.pushViewController(photoDetailVc, animated: true);
+                photoDetailVc.transitioningDelegate = ModalAnimationDelegate.shared;
+                photoDetailVc.modalPresentationStyle = .custom;
+                present(photoDetailVc, animated: true, completion: nil);
                 
             }
         }
     }
-    
-    // 实现代理方法
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        if operation == .push {
-            
-            return PushAnimation();
-        } else {
-            return nil;
-        }
-    }
-    
-
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

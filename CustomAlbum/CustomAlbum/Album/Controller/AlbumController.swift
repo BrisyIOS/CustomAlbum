@@ -19,7 +19,7 @@ class AlbumController: UIViewController, UITableViewDataSource, UITableViewDeleg
         let tableView = UITableView.init(frame: .zero, style: .plain);
         tableView.dataSource = self;
         tableView.delegate = self;
-        tableView.rowHeight = 80;
+        tableView.rowHeight = realValue(value: 80);
         tableView.tableFooterView = UIView();
         return tableView;
     }();

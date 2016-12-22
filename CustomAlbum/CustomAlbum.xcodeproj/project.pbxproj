@@ -20,9 +20,8 @@
 		8B598ED41E016E4B002AB371 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B598ED31E016E4B002AB371 /* AlbumModel.swift */; };
 		8B598ED61E016E56002AB371 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B598ED51E016E56002AB371 /* PhotoModel.swift */; };
 		8B6168621E023D8A00BD76E8 /* PhotoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6168611E023D8A00BD76E8 /* PhotoDetailCell.swift */; };
+		8B653D4E1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B653D4D1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift */; };
 		8B9551731E025F24000A7242 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9551721E025F24000A7242 /* Header.swift */; };
-		8B9551771E028DA2000A7242 /* PopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9551761E028DA2000A7242 /* PopAnimation.swift */; };
-		8B9551791E0291A0000A7242 /* PushAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9551781E0291A0000A7242 /* PushAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,9 +61,8 @@
 		8B598ED31E016E4B002AB371 /* AlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
 		8B598ED51E016E56002AB371 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		8B6168611E023D8A00BD76E8 /* PhotoDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailCell.swift; sourceTree = "<group>"; };
+		8B653D4D1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalAnimationDelegate.swift; sourceTree = "<group>"; };
 		8B9551721E025F24000A7242 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		8B9551761E028DA2000A7242 /* PopAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimation.swift; sourceTree = "<group>"; };
-		8B9551781E0291A0000A7242 /* PushAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +115,7 @@
 			children = (
 				8B598E961E016D1E002AB371 /* AppDelegate.swift */,
 				8B9551721E025F24000A7242 /* Header.swift */,
-				8B9551761E028DA2000A7242 /* PopAnimation.swift */,
-				8B9551781E0291A0000A7242 /* PushAnimation.swift */,
+				8B653D4D1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift */,
 				8B598EC71E016DD1002AB371 /* Album */,
 				8B598E9D1E016D1E002AB371 /* Assets.xcassets */,
 				8B598E9F1E016D1E002AB371 /* LaunchScreen.storyboard */,
@@ -252,7 +249,7 @@
 				TargetAttributes = {
 					8B598E921E016D1E002AB371 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = A6RKWJ9J6G;
+						DevelopmentTeam = 3GP38WPBTX;
 						ProvisioningStyle = Automatic;
 					};
 					8B598EA61E016D1F002AB371 = {
@@ -320,13 +317,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B9551771E028DA2000A7242 /* PopAnimation.swift in Sources */,
 				8B598E971E016D1E002AB371 /* AppDelegate.swift in Sources */,
 				8B9551731E025F24000A7242 /* Header.swift in Sources */,
 				8B598ED41E016E4B002AB371 /* AlbumModel.swift in Sources */,
 				8B598ED21E016E36002AB371 /* PhotoCell.swift in Sources */,
 				8B598ECE1E016DF7002AB371 /* PhotoListController.swift in Sources */,
-				8B9551791E0291A0000A7242 /* PushAnimation.swift in Sources */,
+				8B653D4E1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift in Sources */,
 				8B598ED61E016E56002AB371 /* PhotoModel.swift in Sources */,
 				8B6168621E023D8A00BD76E8 /* PhotoDetailCell.swift in Sources */,
 				8B598ECC1E016DDD002AB371 /* AlbumController.swift in Sources */,
@@ -473,7 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A6RKWJ9J6G;
+				DEVELOPMENT_TEAM = 3GP38WPBTX;
 				INFOPLIST_FILE = CustomAlbum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangxu.CustomAlbum;
@@ -486,7 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A6RKWJ9J6G;
+				DEVELOPMENT_TEAM = 3GP38WPBTX;
 				INFOPLIST_FILE = CustomAlbum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangxu.CustomAlbum;

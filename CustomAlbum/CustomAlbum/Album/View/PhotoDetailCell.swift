@@ -20,9 +20,10 @@ class PhotoDetailCell: UICollectionViewCell {
             
             let options = PHImageRequestOptions();
             options.isSynchronous = false;
+            options.resizeMode = .exact;
             options.isNetworkAccessAllowed = true;
-            let targetSize = CGSize(width: SCREEN_WIDRH, height: SCREEN_HEIGHT - CGFloat(64));
-            PHCachingImageManager().requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options, resultHandler: {
+            let targetSize = CGSize(width: SCREEN_WIDRH * scale, height: SCREEN_HEIGHT * scale);
+            PHCachingImageManager().requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: {
                 (image, _) in
                 
                 if let image = image {
@@ -31,9 +32,12 @@ class PhotoDetailCell: UICollectionViewCell {
             })
         }
     };
+  
     
-    private lazy var icon: UIImageView = {
+    lazy var icon: UIImageView = {
         let icon = UIImageView();
+        icon.contentMode = .scaleAspectFit;
+        icon.clipsToBounds = true;
         return icon;
     }();
     
@@ -51,32 +55,9 @@ class PhotoDetailCell: UICollectionViewCell {
     // 设置子控件的frame
     override func layoutSubviews() {
         super.layoutSubviews();
-        
-        let width = bounds.size.width;
-        let height = bounds.size.height;
-        
-        if let asset = asset {
-            let imageW = CGFloat(asset.pixelWidth);
-            let imageH = CGFloat(asset.pixelHeight);
-            let ratioW = imageW/width;
-            let ratioH = imageH/height;
-            
-            
-            // 设置ion的frame
-            icon.center = CGPoint(x: width/2, y: height/2);
-            var iconH = height;
-            var iconW = imageW/ratioH;
-            
-            if imageW > width {
-                iconW = width;
-                iconH = imageH/ratioW;
-            }
-            
-            icon.bounds = CGRect(x: 0, y: 0, width: iconW, height: iconH);
-            
-        }
-        
-       
+  
+        icon.frame = bounds;
+  
     }
     
     required init?(coder aDecoder: NSCoder) {
