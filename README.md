@@ -9,7 +9,7 @@
 </br></br>
 
 ##运行效果
-![image text](http://ac-otjqboap.clouddn.com/9aa3664bd0dbebfe0695.gif)
+![image text](https://dn-otjqboap.qbox.me/090a6b19e0a486f57e8a.gif)
 
 ##自定义系统相册
 * 判断权限
