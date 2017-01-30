@@ -9,9 +9,9 @@
 import UIKit
 import Photos
 
-let ITEM_SIZE = CGSize(width: realValue(value: 90), height: realValue(value: 100));
-let IMAGE_SIZE = CGSize(width: realValue(value: 90 * 2) * scale, height: realValue(value: 90 * 2) * scale);
-let MARGIN: CGFloat = realValue(value: 3);
+let ITEM_SIZE = CGSize(width: realValue(value: 93), height: realValue(value: 93));
+let IMAGE_SIZE = CGSize(width: realValue(value: 93/2) * scale, height: realValue(value: 93/2) * scale);
+let MARGIN: CGFloat = realValue(value: 0.55);
 
 class PhotoListController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -43,7 +43,7 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("-------\(IMAGE_SIZE)")
+       
         // 添加collectionView
         view.addSubview(collectionView);
         
@@ -54,22 +54,12 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         // 加载assets数组
         loadPhotoList();
       
-        // 缓存图片
-        cachePhotos();
- 
+        
 
         // Do any additional setup after loading the view.
     }
     
-    // 缓存照片
-    func cachePhotos() -> Void {
-        
-        let newOptions = PHImageRequestOptions();
-        newOptions.isSynchronous = false;
-        newOptions.resizeMode = .exact;
-        newOptions.isNetworkAccessAllowed = true;
-        self.imageManager.startCachingImages(for: assets!, targetSize: IMAGE_SIZE, contentMode: .aspectFit, options: newOptions);
-    }
+   
     
     // 加载assets数组
     private func loadPhotoList() -> Void {
@@ -108,14 +98,15 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         if let assets = assets {
             
             if indexPath.row < assets.count {
-                let options = PHImageRequestOptions();
-                options.isSynchronous = true;
-                options.resizeMode = .fast;
-                options.isNetworkAccessAllowed = true;
+               
                 let asset = assets[indexPath.row];
-                self.imageManager.requestImage(for: asset, targetSize: IMAGE_SIZE, contentMode: .aspectFit, options: options, resultHandler: {
-                    (image, _) in
-                    cell?.image = image;
+                _ = PhotoHandler.shared.getPhotosWithAsset(asset: asset, targetSize: IMAGE_SIZE, isOriginalImage: false, completion: { (result) in
+                    
+                    guard let imageData = UIImageJPEGRepresentation(result, 0.3) else {
+                        return;
+                    }
+                    cell?.image = UIImage.init(data: imageData);
+                    
                 })
             }
         }

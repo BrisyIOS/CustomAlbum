@@ -21,6 +21,7 @@
 		8B598ED61E016E56002AB371 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B598ED51E016E56002AB371 /* PhotoModel.swift */; };
 		8B6168621E023D8A00BD76E8 /* PhotoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6168611E023D8A00BD76E8 /* PhotoDetailCell.swift */; };
 		8B653D4E1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B653D4D1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift */; };
+		8B74ABDC1E3F56E100A05762 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74ABDB1E3F56E100A05762 /* PhotoHandler.swift */; };
 		8B9551731E025F24000A7242 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9551721E025F24000A7242 /* Header.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		8B598ED51E016E56002AB371 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		8B6168611E023D8A00BD76E8 /* PhotoDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailCell.swift; sourceTree = "<group>"; };
 		8B653D4D1E0B7B3C00FD2793 /* ModalAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalAnimationDelegate.swift; sourceTree = "<group>"; };
+		8B74ABDB1E3F56E100A05762 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		8B9551721E025F24000A7242 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 			children = (
 				8B598ED31E016E4B002AB371 /* AlbumModel.swift */,
 				8B598ED51E016E56002AB371 /* PhotoModel.swift */,
+				8B74ABDB1E3F56E100A05762 /* PhotoHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B598E971E016D1E002AB371 /* AppDelegate.swift in Sources */,
+				8B74ABDC1E3F56E100A05762 /* PhotoHandler.swift in Sources */,
 				8B9551731E025F24000A7242 /* Header.swift in Sources */,
 				8B598ED41E016E4B002AB371 /* AlbumModel.swift in Sources */,
 				8B598ED21E016E36002AB371 /* PhotoCell.swift in Sources */,

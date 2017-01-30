@@ -17,18 +17,15 @@ class PhotoDetailCell: UICollectionViewCell {
             guard let asset = asset else {
                 return;
             }
-            
-            let options = PHImageRequestOptions();
-            options.isSynchronous = false;
-            options.resizeMode = .exact;
-            options.isNetworkAccessAllowed = true;
-            let targetSize = CGSize(width: SCREEN_WIDRH * scale, height: SCREEN_HEIGHT * scale);
-            PHCachingImageManager().requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: {
-                (image, _) in
+           
+            // 获取原图
+            _ = PhotoHandler.shared.getPhotosWithAsset(asset: asset, targetSize: PHImageManagerMaximumSize, isOriginalImage: true, completion: { (image) in
                 
-                if let image = image {
-                    self.icon.image = image;
+                guard let imageData = UIImageJPEGRepresentation(image, 0.1) else {
+                    return;
                 }
+                self.icon.image = UIImage.init(data: imageData);
+                
             })
         }
     };

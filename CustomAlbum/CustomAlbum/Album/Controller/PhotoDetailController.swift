@@ -20,7 +20,7 @@ class PhotoDetailController: UIViewController, UICollectionViewDataSource, UICol
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.itemSize = CGSize(width: SCREEN_WIDRH, height: SCREEN_HEIGHT);
-        let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDRH, height: SCREEN_HEIGHT), collectionViewLayout: layout);
+        let collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: layout);
         collectionView.dataSource = self;
         collectionView.delegate = self;
         collectionView.backgroundColor = UIColor.clear;
@@ -51,10 +51,6 @@ class PhotoDetailController: UIViewController, UICollectionViewDataSource, UICol
         // 注册cell
         collectionView.register(PhotoDetailCell.self, forCellWithReuseIdentifier: photoDetailCellIdentifier);
         
-        // 改变偏移量
-        if let indexPath = indexPath {
-            collectionView.scrollToItem(at: indexPath, at: .right, animated: false);
-        }
 
         // Do any additional setup after loading the view.
     }
@@ -92,6 +88,17 @@ class PhotoDetailController: UIViewController, UICollectionViewDataSource, UICol
         dismiss(animated: true, completion: nil);
     }
 
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews();
+        
+        collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDRH, height: SCREEN_HEIGHT);
+        
+        // 改变偏移量
+        if let indexPath = indexPath {
+            collectionView.scrollToItem(at: indexPath, at: .right, animated: false);
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
